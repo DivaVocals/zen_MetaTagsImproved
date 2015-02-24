@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Meta Tags &mdash; Updated</title>
+
+<style type="text/css">
+<!--
+a, a:active, a:visited { color: #006666; text-decoration: none; }
+a:hover { color:#00CC99; text-decoration: underline; }
+body, p, h1, h2, h3, h4, h5, h6, li, td, dd, dt, table { font-family: Verdana, AvantGarde, Tahoma, Arial, sans-serif; font-size: 10pt; color: black; padding: 0px; margin: 20px; }
+pre { margin: 20px; }
+H1, H2, H3, H4 { font-weight: bold }
+h1 { font-size: 20px; }
+h2 { font-size: 16px; }
+ol li, ul li { margin: 5px 0; }
+table { border-collapse: collapse; }
+td, th { padding: 5px 10px; text-align: left; border-bottom: 1px solid black; }
+.corefile, .impt { color: red; }
+.template { color: blue; }
+img { margin-left: 20px; max-width: 95%; }
+-->
+</style>
+</head>
+
+<body>
+<h1>Meta Tags &mdash; Updated</h1>
+<h3>Version 1.0.1</h3>
+<p>Created by <a href="http://vinosdefrutastropicales.com" target="_blank" rel="noreferrer">Vinos de Frutas Tropicales</a> for <a href="http://overthehillweb.com" target="_blank" rel="noreferrer">overthehillweb.com</a>.  Copyright &copy; 2015, Vinos de Frutas Tropicales.</p>
+
+<hr />
+<h2>What it does</h2>
+<p>This plugin updates/overrides the built-in &quot;meta-tags&quot; processing for a Zen Cart store.  The processing includes the <em>admin-level updates</em> provided by two plugins that are available in the Zen Cart plugins:</p><ol>
+  <li><a href="http://www.zen-cart.com/downloads.php?do=file&id=746" target="_blank">EZ-Pages Meta Tag Fields</a>, v3.0.0</li>
+  <li><a href="http://www.zen-cart.com/downloads.php?do=file&id=932" target="_blank">Manufacturers Meta Tags</a>, v2.0.0</li>
+</ol>
+<p>In addition, the plugin provides a new admin-level page (<em>Localization->Other Pages' Meta Tags</em>) through which you can define the meta-tag values used by the &quot;other&quot; (non-listing, non-product information, non-ezpages) pages.</p>
+
+<h3>Database Changes</h3>
+<p>In addition to the database changes introduced by <em>EZ-Pages Meta Tag Fields</em> and <em>Manufacturers Meta Tags</em>, <strong>Meta Tags &mdash; Updated</strong> makes the following additions to your Zen Cart database:</p>
+<ol>
+  <li>The table <code>other_pages_meta_tags</code> holds the &quot;other&quot; pages' meta tag values.</li>
+  <li>An entry is added to the <code>admin_pages</code> table to add the <em>Localization-&gt;Other Pages' Meta Tags</em> tool to the admin-console menu.</li>
+  <li>The following values are added to the <code>configuration</code> table:<ol>
+    <li><em>Configuration-&gt;My Store-&gt;Meta Tags &mdash; Default Values</em></li>
+    <li><em>Configuration-&gt;Maximum Values-&gt;Meta Tags &mdash; Maximum Title Length</em></li>
+    <li><em>Configuration-&gt;Maximum Values-&gt;Meta Tags &mdash; Maximum Number of Keywords</em></li>
+    <li><em>Configuration-&gt;Maximum Values-&gt;Meta Tags &mdash; Maximum Description Length</em></li>
+  </ol></li>
+</ol>
+
+<h3>Admin-Level Changes</h3>
+<p>Besides the addition of the above configuration values, this plugin introduces an additional tool (<em>Localization-&gt;Other Pages' Meta Tags</em>) to your admin-console menu, allowing the meta-tag information to be entered for the &quot;other&quot; pages in the store.  This tool will interrogate the existing store-side pages, displaying those pages that aren't listed in the <code>ROBOTS_PAGES_TO_SKIP</code> constant and not index,  product*_info or document*_info pages &mdash; there will be an entry for the home-page meta-tags.  The admin user can enter the title, keywords and description for each of these stand-alone pages; the tool is multi-language enabled.</p>
+
+<h3>Store-Side Changes</h3>
+<p>The file <code>/includes/modules/YOUR_TEMPLATE/meta_tags.php</code> is a <b>total re-write</b> of the like-named module provided in the Zen Cart distribution.  That module's processing determines the <em>type</em> of page, i.e. listing, product, ez-page or &quot;other&quot;, and gathers the page-specific meta-tag information from the database. Once the title, keywords and description information has been gathered from the &quot;source&quot; , a meta-tag's output will occur by default <b>if-and-only-if</b> meta-tag data has been entered &mdash; no default values are accepted.  Each of the meta-tag outputs (title, keywords and description) will be truncated at their maximum length (or, for the keywords, count), as specified by the <em>Configuration-&gt;Maximum Values</em> items added by this processing.</p>
+<p>This default processing is overridden if the value <em>Configuration-&gt;My Store-&gt;Meta Tags &mdash; Default Values</em> is set to <b>true</b>.  If that value is set, then the following &quot;rules&quot; are used to populate the meta-tag values if no other setting applies:</p>
+<table>
+  <tr>
+    <th>Page Type</th>
+    <th>Title</th>
+    <th>Keywords</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>All product pages, any page whose name starts with either <code>product_</code> or <code>document_</code></td>
+    <td>Product's name [model]</td>
+    <td>Not populated</td>
+    <td>First nn characters of the product's description</td>
+  </tr>
+  <tr>
+    <td>Any category/product listing page</td>
+    <td>Category name</td>
+    <td>Not populated</td>
+    <td>First nn characters of the category description (if present)</td>
+  </tr>
+  <tr>
+    <td>Manufacturer's listing</td>
+    <td>Manufacturer name</td>
+    <td>Not populated</td>
+    <td>Not populated</td>
+  </tr>
+  <tr>
+    <td>EZ-Pages</td>
+    <td>EZ-Page title</td>
+    <td>Not populated</td>
+    <td>First nn characters of the HTML content, if present.</td>
+  </tr>
+  <tr>
+    <td>&quot;Other&quot; Pages</td>
+    <td>HEADING_TITLE constant for the page, if present</td>
+    <td>Not populated</td>
+    <td>Not populated</td>
+  </tr>
+</table>
+
+
+<hr />
+<h2>Installation</h2>
+<p>This plugin has <span class="corefile">core-file overwrites</span> and <span class="template">template-override</span> files; you should <strong>always</strong> backup your cart's database and files prior to making any changes.  Each of the <span class="corefile">core-file</span> and <span class="template">template-override</span> files use the like-named file from the Zen Cart v1.5.4 distribution as their change-basis.</p>
+<ol>
+  <li>Unzip the plugin's package file, which you've most likely already done if you're reading this!</li>
+  <li>Rename the /YOUR_ADMIN directory to match your Zen Cart's secret admin-folder name.</li>
+  <li>Rename the template-override directories to match your cart's active template folder:<ol>
+    <li>/includes/languages/english/YOUR_TEMPLATE</li>
+    <li>/includes/modules/YOUR_TEMPLATE</li>
+    <li>/includes/templates/YOUR_TEMPLATE</li>
+  </ol></li>
+  <li>If you've made previous changes to any of the following <span class="corefile">core-file overwrites</span> or <span class="template">template-override</span> files, you'll need to merge those changes with the files provided by this plugin:<ol>
+    <li><span class="template">/includes/languages/english/YOUR_TEMPLATE/meta_tags.php</span></li>
+    <li><span class="template">/includes/templates/YOUR_TEMPLATE/common/html_header.php</span></li>
+    <li><span class="corefile">/YOUR_ADMIN/ezpages.php</span></li>
+    <li><span class="corefile">/YOUR_ADMIN/manufacturers.php</span></li>
+  </ol></li>
+  <li><strong>Note:</strong> There is one (1) <span class="template">template-override</span> file that should be copied in its entirety to your store's file system for this plugin to properly operate:<ol>
+    <li><span class="template">/includes/modules/YOUR_TEMPLATE/meta_tags.php</span></li>
+  </ol></li>
+  <li>Copy <b>only</b> the plugin's <b>admin-level</b> files to your store's file system.<ol>
+    <li><span class="corefile">/YOUR_ADMIN/ezpages.php</span></li>
+    <li><span class="corefile">/YOUR_ADMIN/manufacturers.php</span></li>
+    <li>/YOUR_ADMIN/other_pages_meta_tags.php</li>
+    <li>/YOUR_ADMIN/includes/auto_loaders/config.meta_tags_updated.php</li>
+    <li>/YOUR_ADMIN/includes/auto_loaders/config.zc154_compatibility.php</li>
+    <li>/YOUR_ADMIN/includes/extra_datafiles/meta_tags_manufacturers.php</li>
+    <li>/YOUR_ADMIN/includes/extra_datafiles/other_meta_tags_file_database_names.php</li>
+    <li>/YOUR_ADMIN/includes/functions/extra_functions/ezpages_metatags_admin_extra_functions.php</li>
+    <li>/YOUR_ADMIN/includes/functions/extra_functions/functions_metatags_manufacturers.php</li>
+    <li>/YOUR_ADMIN/includes/init_includes/init_meta_tags_updated.php</li>
+    <li>/YOUR_ADMIN/includes/init_includes/init_zc154_compatibility.php</li>
+    <li><span class="corefile">/YOUR_ADMIN/includes/languages/english/ezpages.php</span></li>
+    <li>/YOUR_ADMIN/includes/languages/english/other_pages_meta_tags.php</li>
+    <li>/YOUR_ADMIN/includes/languages/english/extra_definitions/manufacturers_metatags.php</li>
+    <li>/YOUR_ADMIN/includes/languages/english/extra_definitions/other_pages_meta_tags_extra_definitions.php</li>
+  </ol></li>
+  <li>Log into your Zen Cart admin-console; this will cause the auto-installers to run, adding the new fields and tables to the database.</li>
+  <li>Copy the plugin's <b>store-side</b> file to your store's file system.<ol>
+    <li>/includes/extra_datafiles/meta_tags_manufacturers.php</li>
+    <li>/includes/extra_datafiles/other_pages_meta_tags_database_names.php</li>
+    <li><span class="template">/includes/languages/english/YOUR_TEMPLATE/meta_tags.php</span></li>
+    <li><span class="template">/includes/modules/YOUR_TEMPLATE/meta_tags.php</span></li>
+    <li><span class="template">/includes/templates/YOUR_TEMPLATE/common/html_header.php</span></li>
+  </ol></li>
+</ol>
+
+<hr />
+<h2>Version History</h2>
+<ul>
+  <li>v1.0.0, 2015-02-09: Initial Release</li>
+  <li>v1.0.1, 2015-02-18:<ol>
+    <li>Correct white-screen on &quot;Other Pages' Meta Tags&quot;</li>
+    <li>Correct template-folder name</li>
+  </ol>Changed /YOUR_ADMIN/other_pages_meta_tags.php</li>
+</ul>
+
+</body>
+</html>

@@ -1,6 +1,21 @@
 # zenMetaTagsImproved
 
+Improve meta tagging for Zen Cart. (brings Zen Cart meta tags into the 20th century! **lol**)
+....
+
 The current meta tag capability in Zen Cart is really out of touch with modern browser standards.. This module is the 1st version of an attempt at modernizing the current Zen Cart meta tagging functionality. 
+
+Zen Cart has admin functionality for editing the meta tags for categories and products, but not the rest of the site pages.. The rest of the site meta tags must be managed via the includes/languages/english/YOUR_TEMPLATE_NAME/meta_tags.php file. 
+
+Novice site owners should not have to have to learn how to edit PHP files just to update the site meta tags. 
+
+Therefore we are needing to add the functionality for managing page meta tags into the shop admin so that it can be managed there. I also want some modifications/improvements to the category and products meta tag functionality as well because the current behavior doesn't match the search engine's current standards. (like the devaluation of keywords for example)
+ 
+ALL meta tag functionality should include validation (preferably some kind of on-page validation) to ensure that the meta tags do not exceed search engine character or word limits as follows:
+•        Title: up to 100 characters
+•        Keywords: up to 20 keywords (comma separated)
+•        Description: up to 200 characters
+The validation functionality needs to be incorporated into the new admin meta tag management functionality as well as the existing category and product meta tag maintenance.
 
 "Meta Tags Updated" plugin was developed based on the following requirements
 

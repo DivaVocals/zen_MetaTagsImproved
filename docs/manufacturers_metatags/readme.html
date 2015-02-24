@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Manufacturers Meta-Tags for Zen Cart&reg;</title>
+
+<style type="text/css">
+<!--
+a, a:active, a:visited { color: #006666; text-decoration: none; }
+a:hover { color:#00CC99; text-decoration: underline; }
+body, p, h1, h2, h3, h4, h5, h6, li, td, dd, dt { font-family: Verdana, AvantGarde, Tahoma, Arial, sans-serif; font-size: 10pt; color: black; padding: 0px; margin: 20px; }
+pre { margin: 20px; }
+H1, H2, H3, H4 { font-weight: bold }
+h1 { font-size: 20px; }
+h2 { font-size: 16px; }
+ol li, ul li { margin: 5px 0; }
+.corefile, .impt { color: red; }
+.template { color: blue; }
+img { margin-left: 20px; max-width: 95%; }
+-->
+</style>
+</head>
+
+<body>
+<h1>Manufacturers Meta-Tags &mdash; for Zen Cart v1.5.1 through v1.5.4</h1>
+<h3>Version 2.0.0</h3>
+<p>Current Support Thread at Zen Cart Forums: <a href="http://www.zen-cart.com/showthread.php?129006-manufacturers-meta-tags%28keywords-and-title-and-description%29" target="_blank">http://www.zen-cart.com/showthread.php?129006-manufacturers-meta-tags%28keywords-and-title-and-description%29</a></p>
+
+<hr />
+<h2>What it does</h2>
+<p>This plugin enables your store to assign manufacturer-specific meta-tag title, keyword and/or description text, in a manner similar to the product-specific meta-tag processing that is built into Zen Cart.</p>
+
+<hr />
+<h2>Installation</h2>
+<p>This plugin has one <span class="corefile">core-file overwrite</span> and one <span class="template">template-override</span> file; you should <strong>always</strong> backup your cart's database and files prior to making any changes.</p>
+<ol>
+  <li>Unzip the plugin's package file, which you've most likely already done if you're reading this!</li>
+  <li>Rename the /YOUR_ADMIN directory to match your Zen Cart's secret admin-folder name.</li>
+  <li>Rename the one template-override directory (/includes/modules/YOUR_TEMPLATE) to match your cart's active template folder.</li>
+  <li>Make a copy of your current <span class="corefile">/YOUR_ADMIN/manufacturers.php</span> file; if you've made previous changes to that file, you'll need to merge those changes with this plugin's updates.</li>
+  <li>If you've made previous changes to <span class="template">/includes/modules/YOUR_TEMPLATE/meta_tags.php</span>, you'll need to merge those changes with this plugin's updates.</li>
+  <li>Copy <b>only</b> the plugin's <b>admin-level</b> files to your store's file system.<ol>
+    <li><span class="corefile">/YOUR_ADMIN/manufacturers.php</span></li>
+    <li>/YOUR_ADMIN/includes/extra_datafiles/meta_tags_manufacturers.php</li>
+    <li>/YOUR_ADMIN/includes/functions/extra_functions/functions_metatags_manufacturers.php</li>
+    <li>/YOUR_ADMIN/includes/languages/english/extra_definitions/manufacturers_metatags.php</li>
+    <li>/YOUR_ADMIN/includes/languages/spanish/extra_definitions/manufacturers_metatags.php</li>
+  </ol></li>
+  <li>Log into your Zen Cart's admin-console; this will cause the auto-installer to run, adding the database table: <code>meta_tags_manufacturers_description</code>.</li>
+  <li>Copy the plugin's <b>store-side</b> files to your store's file system.<ol>
+    <li>/includes/languages/english/extra_definitions/meta_tags_manufacturers.php</li>
+    <li><span class="template">/includes/modules/YOUR_TEMPLATE/meta_tags.php</span></li>
+  </ol></li>
+</ol>
+
+<hr />
+<h2>Version History</h2>
+<ul>
+  <li>v1.0,   2009-06-01 (jucorant): Initial release.</li>
+  <li>v1.1,   2009-06-05 (jucorant): Added DB_PREFIX to the extra_datafiles.</li>
+  <li>v2.0.0, 2015-01-30 (lat9):<ol>
+    <li>Correct usage of PHP short tags.</li>
+    <li>Include database setup in an admin-level auto-installer &mdash; no more SQL installation script.</li>
+    <li>Delete meta-tag records if a manufacturer is deleted.</li>
+    <li>Update core-file and template-override basis to Zen Cart v1.5.4.</li>
+    <li>Standardize admin and template-override folder names for the distribution.</li>
+    <li>Move meta_tags.php into a template-override folder.</li>
+  </ol></li>
+</ul>
+
+</body>
+</html>
