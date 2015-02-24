@@ -1,4 +1,5 @@
 # zenMetaTagsImproved
+Two meta tags search engine DO use for helping with matching search terms to matching content are Title, and Description. (https://support.google.com/webmasters/answer/79812)
 
 Improve meta tagging for Zen Cart. (An attempt to bring Zen Cart meta tags into the 20th century! **lol**)
 
