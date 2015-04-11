@@ -12,6 +12,7 @@ Novice site owners should not have to have to learn how to edit PHP files just t
 There is a need to add the functionality for managing page meta tags into the shop admin so that it can be managed there. Improvements to the existing meta tag functionality is needed as well because the current behavior doesn't match the search engine's current standards. (like the devaluation of keywords for example) The current way that title, keywords, and description tags are auto generated has the potential to HARM versus help current site owners.
 
 Based on current browser standards, here's recommmendations on how title and descriptions should be managed on a site:
+
 **Description - Recommended Length**
 Meta descriptions can be any length, but search engines generally truncate snippets longer than 160 characters. It is best to keep meta descriptions between 150 and 160 characters.
 
