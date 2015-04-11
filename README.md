@@ -10,6 +10,22 @@ Zen Cart has admin functionality for editing the meta tags for categories and pr
 Novice site owners should not have to have to learn how to edit PHP files just to update the site meta tags. 
 
 There is a need to add the functionality for managing page meta tags into the shop admin so that it can be managed there. Improvements to the existing meta tag functionality is needed as well because the current behavior doesn't match the search engine's current standards. (like the devaluation of keywords for example) The current way that title, keywords, and description tags are auto generated has the potential to HARM versus help current site owners.
+
+Based on current browser standards, here's recommmendations on how title and descriptions should be managed on a site:
+**Description - Recommended Length**
+Meta descriptions can be any length, but search engines generally truncate snippets longer than 160 characters. It is best to keep meta descriptions between 150 and 160 characters.
+
+**Description - Not a Google Ranking Factor**
+Google announced in September of 2009 that neither meta descriptions nor meta keywords factor into Google's ranking algorithms for web search. Google uses meta descriptions to return results when searchers use advanced search operators to match meta tag content, as well as to pull preview snippets on search result pages, but it's important to note that meta descriptions do not to influence Google's ranking algorithms for normal web search.
+
+**Quotes Cut Off Descriptions**
+Any time quotes are used in a meta description, Google cuts off the description. To prevent meta descriptions from being cut off, it's best to remove all non-alphanumeric characters from meta descriptions. If quotation marks are important in your meta description, you can change them to single quotes rather than double quotes to prevent truncation.
+
+**Title - Optimal Format**
+Primary Keyword - Secondary Keyword | Brand Name
+
+**Title - Optimal Length for Search Engines**
+Google typically displays the first 50-60 characters of a title tag, or as many characters as will fit into a 512-pixel display. If you keep your titles under 55 characters, you can expect at least 95% of your titles to display properly. Keep in mind that search engines may choose to display a different title than what you provide in your HTML. Titles in search results may be rewritten to match your brand, the user query, or other considerations.
  
 ALL meta tag functionality should include validation (preferably some kind of on-page validation) to ensure that the meta tags do not exceed search engine character or word limits as follows:
 - Title: up to 100 characters
@@ -18,7 +34,7 @@ ALL meta tag functionality should include validation (preferably some kind of on
 
 The validation functionality needs to be incorporated into the new admin meta tag management functionality as well as the existing category and product meta tag maintenance.
 
-"Meta Tags Updated" plugin was developed based on the following requirements
+"Meta Tags Updated" plugin was developed based on the following requirements:
 
 There are various elements that are required to meet the data-gathering aspects of the requirements:
 - Install Manufacturers Meta-Tags (http://www.zen-cart.com/downloads.php?do=file&id=932 ) This will update the admin’s Catalog->Manufacturers processing to add the meta-tag on/off icon to the manufacturers’ listing display; that icon operates in a manner similar to the built-in categories/products meta-tags. When selected, you can enter the title, keywords and description information for the current manufacturer (multi-lingual).
