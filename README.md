@@ -1,9 +1,7 @@
 # zenMetaTagsImproved
 Two meta tags search engine DO use for helping with matching search terms to matching content are Title, and Description. (https://support.google.com/webmasters/answer/79812)
 
-Improve meta tagging for Zen Cart. (An attempt to bring Zen Cart meta tags into the 20th century! **lol**)
-
-The current meta tag capability in Zen Cart is really out of touch with modern browser standards.. This module is the 1st version of an attempt at modernizing the current Zen Cart meta tagging functionality. 
+The current meta tag capability in Zen Cart is really out of touch with modern search engine standards.. This module is the 1st version of an attempt at modernizing the current Zen Cart meta tagging functionality. 
 
 Zen Cart has admin functionality for editing the meta tags for categories and products, but not the rest of the site pages.. The rest of the site meta tags must be managed via the **includes/languages/english/YOUR_TEMPLATE_NAME/meta_tags.php** file. 
 
@@ -34,7 +32,7 @@ ALL meta tag functionality should include validation (preferably some kind of on
 
 The validation functionality needs to be incorporated into the new admin meta tag management functionality as well as the existing category and product meta tag maintenance.
 
-"Meta Tags Updated" plugin was developed based on the following requirements:
+Taking a few cues from the popular WordPress plugin "Yoast SEO" by Joost de Valk and his team at Yoast, the "Meta Tags Updated" plugin for Zen Cart was developed based on the following requirements:
 
 There are various elements that are required to meet the data-gathering aspects of the requirements:
 - Install Manufacturers Meta-Tags (http://www.zen-cart.com/downloads.php?do=file&id=932 ) This will update the admin’s Catalog->Manufacturers processing to add the meta-tag on/off icon to the manufacturers’ listing display; that icon operates in a manner similar to the built-in categories/products meta-tags. When selected, you can enter the title, keywords and description information for the current manufacturer (multi-lingual).
